@@ -37,7 +37,7 @@ gamma = 0.75 # discount factor
 alpha = 0.9 # learning rate
 
 #init q-values
-Q = np.array(np.zeros([7,7]))
+Q = np.array(np.zeros([8,8]))
 
 #--------------------------------
 #--------------------------------
