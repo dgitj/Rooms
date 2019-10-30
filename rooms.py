@@ -11,7 +11,6 @@ location_to_state = {
     'L6' : 5,
     'L7' : 6,
     'L8' : 7
-
 }
 
 #Define the actions
@@ -19,14 +18,13 @@ actions = [0,1,2,3,4,5,6,7]
 
 #Define the rewards
 rewards = np.array([[0,1,0,0,0,0,0,0],
-    [1,0,0,1,0,0,0,0],
+    [1,0,0,1,0,1,0,0],
     [0,0,0,1,0,0,0,0],
     [0,1,1,0,1,0,0,0],
     [0,0,0,1,0,1,0,0],
-    [0,0,0,0,1,0,1,0],
+    [0,1,0,0,1,0,1,0],
     [0,0,0,0,0,1,0,1],
     [0,0,0,0,0,0,1,0]])
-
 
 #maps indices to locations
 state_to_location = dict((state, location) for location, state in location_to_state.items())
