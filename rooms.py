@@ -14,7 +14,15 @@ location_to_state = {
 }
 
 #Define the actions
-actions = [0,1,2,3,4,5,6,7]
+actions = np.array([[0,1,0,0,0,0,0,0],
+    [1,0,0,1,0,1,0,0],
+    [0,0,0,1,0,0,0,0],
+    [0,1,0.1,0,0.1,0,0,0],
+    [0,0,0,1,0,1,0,0],
+    [0,1,0,0,1,0,1,0],
+    [0,0,0,0,0,1,0,1],
+    [0,0,0,0,0,0,1,0]])
+
 
 #Define the rewards
 rewards = np.array([[0,1,0,0,0,0,0,0],
@@ -32,14 +40,11 @@ state_to_location = dict((state, location) for location, state in location_to_st
 
 #initialize parameters
 gamma = 0.75 # discount factor
-alpha = 0.9 # learning rate
+alpha = 1 # learning rate
 
 #init q-values
 Q = np.array(np.zeros([8,8]))
 
-#--------------------------------
-#--------------------------------
-#--------------------------------
 
 class QAgent():
 
@@ -58,7 +63,6 @@ class QAgent():
 
     def training(self, start_location, end_location, iterations):
 
-        #def get_optimal_route(start_location, end_location):
         #copy the rewards matrix to new matrix
         rewards_new = np.copy(rewards)
 
@@ -86,7 +90,6 @@ class QAgent():
             next_state = np.random.choice(playable_actions)
 
         # compute the temporal difference
-        # the action here exactly refers to going to the next state
 
             TD = rewards_new[current_state, next_state] + self.gamma * self.Q[next_state, np.argmax(self.Q[next_state,])] - self.Q[current_state, next_state]
 
@@ -101,9 +104,6 @@ class QAgent():
 
         self.get_optimal_route(start_location, end_location, next_location, route, self.Q)
 
-        # We don´t know about the exact number of iterations needed to reach to the final
-        # location hence while loop will be a good choice for iterating
-
     def get_optimal_route(self, start_location, end_location, next_location, route, Q):
         while(next_location != end_location):
             #fetch the starting state
@@ -114,11 +114,12 @@ class QAgent():
             next_location = self.state_to_location[next_state]
             route.append(next_location)
             # Update the starting location for the next iteration
-            start_location = next_location
+            start_location =   next_location
 
         print(route)
-
+        print(Q)
 
 
 qagent = QAgent(alpha, gamma, location_to_state, actions, rewards, state_to_location, Q)
+#From state 7(L8) to state 0 (L1)
 qagent.training('L8', 'L1', 1000)
