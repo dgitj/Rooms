@@ -21,17 +21,17 @@ gamma = 0.95
 
 epsilon = 1.0
 max_epsilon = 1.0
-min_epsilon = 0.01
+min_epsilon = 0.001
 decay_rate = 0.005
 
 # List of rewards
 rewards = []
 
-env.reset()
+
 
 for episode in range(total_episodes):
     #reset the environment
-    state = env.reset
+    state = env.reset()
     step = 0
     done = False
     total_rewards = 0
@@ -70,24 +70,24 @@ print(qtable)
 env.reset()
 
 
-# for episode in range(5):
-#     state = env.reset()
-#     step = 0
-#     done = False
-#     print("--------------------------")
-#     print ("Episode ", episode)
-#     for step in range(max_steps):
-#         action = np.argmax(qtable[state, :])
+for episode in range(5):
+    state = env.reset()
+    step = 0
+    done = False
+    print("--------------------------")
+    print ("Episode ", episode)
+    for step in range(max_steps):
+        action = np.argmax(qtable[state, :])
 
-#         new_state, reward, done, info = env.step(action)
+        new_state, reward, done, info = env.step(action)
 
-#         if done:
-#             env.render()
-#             print("number of steps", step)
-#             break
-#         state = new_state
+        if done:
+            env.render()
+            print("number of steps", step)
+            break
+        state = new_state
 
-# env.close()
+env.close()
 
 
 
