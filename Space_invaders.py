@@ -1,6 +1,4 @@
 import tensorflow as tf      # Deep Learning library
-
-
 import numpy as np           # Handle matrices
 import retro            # Retro Environment
 
@@ -107,7 +105,7 @@ memory_size = 1000000          # Number of experiences the Memory can keep
 stack_size = 4                 # Number of frames stacked
 
 ### MODIFY THIS TO FALSE IF YOU JUST WANT TO SEE THE TRAINED AGENT
-training = False
+training = True
 
 ## TURN THIS TO TRUE IF YOU WANT TO RENDER THE ENVIRONMENT
 episode_render = True
@@ -430,6 +428,7 @@ if training == True:
             if episode % 5 == 0:
                 save_path = saver.save(sess, "./models/model.ckpt")
                 print("Model Saved")
+
 
 
 

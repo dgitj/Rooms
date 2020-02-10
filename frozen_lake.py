@@ -12,7 +12,7 @@ qtable = np.zeros((state_size, action_size))
 
 #hyperparameters
 
-total_episodes = 15000
+total_episodes = 10000
 learning_rate = 0.8
 max_steps  = 99
 gamma = 0.95
@@ -27,8 +27,6 @@ decay_rate = 0.005
 # List of rewards
 rewards = []
 
-
-
 for episode in range(total_episodes):
     #reset the environment
     state = env.reset()
@@ -37,6 +35,7 @@ for episode in range(total_episodes):
     total_rewards = 0
 
     for step in range(max_steps):
+        #random number chosen to explore at the beginning
         exp_exp_tradeoff = random.uniform(0,1)
 
         if exp_exp_tradeoff > epsilon:
